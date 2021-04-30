@@ -4,6 +4,32 @@ $(document).ready(function () {
   //add date to header
   $("#currentDay").text(currentDate);
 
+  //function to check time and determining what class to add to each time block: past, present, or future
+  function checkTime() {
+    //grab the current hour using moment
+
+    var currentHour = moment().hours();
+
+    //check current hour against block hour
+    //if else
+    //need to grab hours for each time block
+    //loop through timeblock hours
+    $(".time-block").each(function () {
+      var blockHour = parseInt($(this).attr("id").split("-")[1]);
+
+      if (blockHour < currentHour) {
+        $(this).addClass("past");
+      } else if (blockHour === currentHour) {
+        $(this).addClass("present");
+      } else {
+        $(this).addClass("future");
+      }
+    });
+    //check curernt hour against block hour
+  }
+
+  checkTime();
+
   //Event Handlers
   $(".saveBtn").on("click", function () {
     //capture info that the user typed and save in local storage, use "this" to link the button clicked to the text area associated with it
@@ -16,13 +42,13 @@ $(document).ready(function () {
   });
 
   //display values from local storage to each corrresponding text block
-  $("#9AM .description").val(localStorage.getItem("9AM"));
-  $("#10AM .description").val(localStorage.getItem("10AM"));
-  $("#11AM .description").val(localStorage.getItem("11AM"));
-  $("#12PM .description").val(localStorage.getItem("12PM"));
-  $("#1PM .description").val(localStorage.getItem("1PM"));
-  $("#2PM .description").val(localStorage.getItem("2PM"));
-  $("#3PM .description").val(localStorage.getItem("3PM"));
-  $("#4PM .description").val(localStorage.getItem("4PM"));
-  $("#5PM .description").val(localStorage.getItem("5PM"));
+  $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+  $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+  $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+  $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+  $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+  $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+  $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+  $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+  $("#hour-17 .description").val(localStorage.getItem("hour-17"));
 });
